@@ -1,0 +1,36 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">{{ operacion }}Produto</div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addProduct()">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Insia o nome">
+                    <span *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+                        Campo invalido
+                    </span>
+                    <input formControlName="description" type="text" class="form-control mt-2" placeholder="Insia a descrição">
+                    <span *ngIf="form.get('description')?.hasError('required') && form.get('description')?.touched">
+                        Campo invalido
+                    </span>
+                    <input formControlName="price" type="number" class="form-control mt-2" placeholder="Insia o preço">
+                    <span *ngIf="form.get('price')?.hasError('required') && form.get('price')?.touched">
+                        Campo invalido
+                    </span>
+                    <input formControlName="stock" type="number" class="form-control mt-2" placeholder="Insia o estoque">
+                    <span *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched">
+                        Campo invalido
+                    </span>
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button routerLink="/" type="button" class="btn btn-secondary">Voltar</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Aceitar</button>
+                        </div>
+                    </div>
+            </form>
+        </div>   
+    </div>
+</div>
+

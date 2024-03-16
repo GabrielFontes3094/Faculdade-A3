@@ -1,0 +1,20 @@
+back:
+
+nodemon dist/index.js
+
+tsc --watch
+
+-------------------
+front:
+
+ng serve --o
+
+----
+
+npm i ngx-toastr
+
+npm install @angular/animation --save
+
+------------------
+
+npm i --save-dev @types/cors
