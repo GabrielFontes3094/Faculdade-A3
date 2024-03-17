@@ -1,0 +1,28 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">Entrar com Usuario</div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addUser()">
+                    <input formControlName="userName" type="text" class="form-control" placeholder="Insira o nome de usuario">
+                    <span *ngIf="form.get('userName')?.hasError('required') && form.get('userName')?.touched">
+                        Campo invalido
+                    </span>
+                    <input formControlName="password" type="password" class="form-control mt-2" placeholder="Insira a senha">
+                    <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+                        Campo invalido
+                    </span>
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button routerLink="/criar-user" type="button" class="btn btn-secondary">Novo usuario</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                    </div>
+            </form>
+        </div>   
+    </div>
+</div>
+
