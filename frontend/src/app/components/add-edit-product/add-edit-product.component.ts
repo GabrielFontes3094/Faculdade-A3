@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-edit-product.component.html',
   styleUrl: './add-edit-product.component.css'
 })
+
 export class AddEditProductComponent  implements OnInit {
   form: FormGroup;
   loading: boolean = false;
@@ -52,14 +53,14 @@ export class AddEditProductComponent  implements OnInit {
       this._productService.updateProduct(this.id, product).subscribe(() => {
         this.toastr.info(`O produto ${product.name} foi atualizado!`, 'Produto atualizado');
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       })
     } else {
       // Para adicionar
       this._productService.saveProduct(product).subscribe(() => {
         this.toastr.success(`O produto ${product.name} foi adicionado!`, 'Produto registrado');
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       })
     }
   }

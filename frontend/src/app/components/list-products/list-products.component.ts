@@ -31,7 +31,7 @@ export class ListProductsComponent implements OnInit{
     this.loading = true;
     this._productService.deleteProduct(id).subscribe(() => {
       this.getListProducts();
-      this.toastr.success('Produto eliminado com sucesso', 'Produto eliminado');
+      this.toastr.warning('Produto eliminado com sucesso', 'Produto eliminado');
     })
   }
 }

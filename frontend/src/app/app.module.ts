@@ -16,6 +16,8 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { AddEditProductComponent } from './components/add-edit-product/add-edit-product.component';
 import { HttpClient } from '@angular/common/http';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import { LoginComponent } from './components/login/login-criar-user/login.component';
+import { LoginEntrarComponent } from './components/login/login-entrar/login-entrar.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProgressBarComponent } from './shared/progress-bar/progress-bar.compone
     NavbarComponent,
     ListProductsComponent,
     AddEditProductComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    LoginComponent,
+    LoginEntrarComponent
   ],
   imports: [
     BrowserModule,
