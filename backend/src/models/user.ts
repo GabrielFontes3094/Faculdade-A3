@@ -3,7 +3,8 @@ import db from '../db/connection';
 
 const User = db.define('User', {
     userName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     },
     password: {
         type: DataTypes.STRING

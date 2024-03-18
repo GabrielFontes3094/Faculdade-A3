@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user';
-import { timeout } from 'rxjs';
+import { Subscriber, timeout } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -27,24 +27,29 @@ export class LoginComponent implements OnInit {
                 })
                } 
 
-  ngOnInit(): void {
+    ngOnInit(): void {}
 
-  }
-
-  addUser() {
-    const user: User = {
-      userName: this.form.value.userName,
-      password: this.form.value.password,
+    addUser(): void {
+      if (this.form.valid) {
+        this.loading = true;
+        const newUser: User = {
+          userName: this.form.value.userName,
+          password: this.form.value.password,
+        };
+        this._userService.addUser(newUser).subscribe(
+          () => {
+            this.loading = false;
+            this.toastr.success('Usuário adicionado com sucesso!', 'Sucesso');
+            this.router.navigate(['/'])
+          },
+          error => {
+            this.loading = false;
+            console.error(error);
+            this.toastr.error('Usuário já cadastrado.', 'Erro');
+          }
+        );
+      }
     }
 
-    this.loading = true;
-      // Para adicionar
-      this._userService.saveUser(user).subscribe(() => {
-        this.toastr.success(`O usuario ${user.userName} foi adicionado!`, 'Usuario registrado');
-        this.loading = false;
-        this.router.navigate(['/']);
-      })
-    }
-  }
-  
+}
 

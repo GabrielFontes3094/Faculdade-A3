@@ -4,17 +4,16 @@ nodemon dist/index.js
 
 tsc --watch
 
+** almacen
 -------------------
 front:
 
 ng serve --o
 
-----
+------------------
 
 npm i ngx-toastr
 
 npm install @angular/animation --save
-
-------------------
 
 npm i --save-dev @types/cors

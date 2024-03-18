@@ -62,13 +62,20 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.deleteUser = deleteUser;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
+    const { userName } = body;
     try {
+        // Verifica se o nome de usuário já existe no banco de dados
+        const existingUser = yield user_1.default.findOne({ where: { userName } });
+        if (existingUser) {
+            return res.status(400).json({ msg: 'O nome de usuário já está em uso.' });
+        }
+        // Se o nome de usuário não existir, cria o usuário
         yield user_1.default.create(body);
-        res.json({ msg: 'usuario adicionado com sucesso!' });
+        res.json({ msg: 'Usuário adicionado com sucesso!' });
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ msg: 'Erro ao adicionar o usuario' });
+        res.status(500).json({ msg: 'Erro ao adicionar o usuário' });
     }
 });
 exports.postUser = postUser;

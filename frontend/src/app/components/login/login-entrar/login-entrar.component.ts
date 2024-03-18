@@ -37,13 +37,5 @@ export class LoginEntrarComponent implements OnInit{
       password: this.form.value.password,
     }
 
-    this.loading = true;
-      // Para adicionar
-      this._userService.saveUser(user).subscribe(() => {
-        this.toastr.success(`O usuario ${user.userName} foi adicionado!`, 'Usuario registrado');
-        this.loading = false;
-        this.router.navigate(['/']);
-      })
-    }
-
+  }
 }

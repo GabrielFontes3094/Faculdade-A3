@@ -15,7 +15,6 @@ export const getUser = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const user = await User.findByPk(id);
-
         if (user) {
             res.json(user);
         } else {
@@ -31,7 +30,6 @@ export const deleteUser = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const user = await User.findByPk(id);
-
         if (!user) {
             res.status(404).json({ msg: `Não existe usuario com id ${id}` });
         } else {
@@ -46,19 +44,25 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 export const postUser = async (req: Request, res: Response) => {
     const { body } = req;
+    const { userName } = body;
     try {
+        // Verifica se o nome de usuário já existe no banco de dados
+        const existingUser = await User.findOne({ where: { userName } });
+        if (existingUser) {
+            return res.status(400).json({ msg: 'O nome de usuário já está em uso.' });
+        }
+        // Se o nome de usuário não existir, cria o usuário
         await User.create(body);
-        res.json({ msg: 'usuario adicionado com sucesso!' });
+        res.json({ msg: 'Usuário adicionado com sucesso!' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: 'Erro ao adicionar o usuario' });
+        res.status(500).json({ msg: 'Erro ao adicionar o usuário' });
     }
 }
 
 export const updateUser = async (req: Request, res: Response) => {
     const { body } = req;
     const { id } = req.params;
-
     try {
         const user = await User.findByPk(id);
         if (user) {
