@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.postUser = exports.deleteUser = exports.getUser = exports.getUsers = void 0;
+exports.authenticateUser = exports.updateUser = exports.postUser = exports.deleteUser = exports.getUser = exports.getUsers = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -98,3 +98,20 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.updateUser = updateUser;
+const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userName, password } = req.body;
+    try {
+        const user = yield user_1.default.findOne({ where: { userName, password } });
+        if (user) {
+            res.json({ msg: 'Usuário autenticado com sucesso!' });
+        }
+        else {
+            res.status(401).json({ msg: 'Credenciais inválidas. Verifique o nome de usuário e senha.' });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Erro ao autenticar usuário' });
+    }
+});
+exports.authenticateUser = authenticateUser;

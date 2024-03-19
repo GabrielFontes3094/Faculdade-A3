@@ -76,3 +76,18 @@ export const updateUser = async (req: Request, res: Response) => {
         res.status(500).json({ msg: 'Erro ao atualizar o usuario' });
     }
 }
+
+export const authenticateUser = async (req: Request, res: Response) => {
+    const { userName, password } = req.body;
+    try {
+        const user = await User.findOne({ where: { userName, password } });
+        if (user) {
+            res.json({ msg: 'Usuário autenticado com sucesso!' });
+        } else {
+            res.status(401).json({ msg: 'Credenciais inválidas. Verifique o nome de usuário e senha.' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Erro ao autenticar usuário' });
+    }
+}
