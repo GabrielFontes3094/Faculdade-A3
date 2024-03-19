@@ -27,15 +27,25 @@ export class LoginEntrarComponent implements OnInit{
                 })
                } 
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  addUser() {
-    const user: User = {
-      userName: this.form.value.userName,
-      password: this.form.value.password,
+  authenticateUser() {
+    if (this.form.valid) {
+      this.loading = true;
+      this._userService.authenticateUser(this.form.value).subscribe(
+        response => {
+          console.log(response); // usuario encontrado
+          this.router.navigate(['/home']);
+          this.toastr.success('Usuário encontrado', 'Sucesso!');
+          this.loading = false;
+        },
+        error => {
+          console.error(error); // usuario não encontrado
+          this.toastr.warning('Usuário não existe', 'Erro!');
+          this.loading = false;
+        }
+      );
     }
-
   }
 }
+
