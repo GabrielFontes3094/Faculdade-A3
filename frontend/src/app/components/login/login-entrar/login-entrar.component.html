@@ -4,7 +4,7 @@
         <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
             <div class="card-header text-center">Entrar com Usuario</div>
             <div class="card-body">
-                <form [formGroup]="form">
+                <form [formGroup]="form" (ngSubmit)="authenticateUser()">
                     <input formControlName="userName" type="text" class="form-control" placeholder="Insira o nome de usuario">
                     <span *ngIf="form.get('userName')?.hasError('required') && form.get('userName')?.touched">
                         Campo invalido

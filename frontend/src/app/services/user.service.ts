@@ -19,4 +19,8 @@ export class UserService {
   addUser(user: User): Observable<any> {
     return this.http.post<any>(this.myAppUrl + this.myApiUrl, user);
   }
+
+  authenticateUser(credentials: { userName: string, password: string }): Observable<any> {
+    return this.http.post<any>(this.myAppUrl + this.myApiUrl + 'authenticate', credentials);
+  }
 }
