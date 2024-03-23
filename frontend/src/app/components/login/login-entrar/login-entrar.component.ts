@@ -46,9 +46,8 @@ export class LoginEntrarComponent implements OnInit{
             case 'vendedor':
               this.router.navigate(['/vendedor']);
               break;
-            // Adicione mais casos conforme necessário para outros níveis de acesso.
             default:
-              this.router.navigate(['/default']);
+              this.router.navigate(['/']);
           }
           this.toastr.success('Usuário encontrado', 'Sucesso!');
           this.loading = false;

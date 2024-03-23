@@ -1,0 +1,31 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">{{ operacion }}Usuario</div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="editUser()">
+                    <p>ID: </p>
+                    <input formControlName="id" type="text" class="form-control" readonly>
+                    <p>Nome: </p>
+                    <input formControlName="userName" type="text" class="form-control mt-2" readonly>
+                    <p>Acesso: </p>
+                    <select formControlName="access" class="form-control mt-2">
+                        <option value="admin">Admin</option>
+                        <option value="usuario">Usuário</option>
+                        <option value="vendedor">Vendedor</option>
+                    </select>
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button routerLink="/admin" type="button" class="btn btn-secondary">Voltar</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Aceitar</button>
+                        </div>
+                    </div>
+            </form>
+        </div>   
+    </div>
+</div>
+
+

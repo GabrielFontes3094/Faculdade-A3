@@ -19,6 +19,8 @@ import { ProgressBarComponent } from './shared/progress-bar/progress-bar.compone
 import { LoginComponent } from './components/login/login-criar-user/login.component';
 import { LoginEntrarComponent } from './components/login/login-entrar/login-entrar.component';
 import { TelaUsuarioComponent } from './components/tela-usuario/tela-usuario.component';
+import { TelaAdminComponent } from './components/admin/tela-admin/tela-admin.component';
+import { AdminEditComponent } from './components/admin/admin-edit/admin-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { TelaUsuarioComponent } from './components/tela-usuario/tela-usuario.com
     ProgressBarComponent,
     LoginComponent,
     LoginEntrarComponent,
-    TelaUsuarioComponent
+    TelaUsuarioComponent,
+    TelaAdminComponent,
+    AdminEditComponent
   ],
   imports: [
     BrowserModule,

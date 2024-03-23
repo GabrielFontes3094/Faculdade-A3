@@ -1,0 +1,28 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="container">
+    <div class="title">
+        <h4>Tela administrador</h4>
+    </div>
+
+    <table *ngIf="listUsers.length > 0" class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Acesso</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listUsers" class="table-active">
+            <td> {{ item.id }} </td>
+            <td> {{ item.userName }} </td>
+            <td> {{ item.access }} </td>
+            <td>
+                <button routerLink="/editUser/{{ item.id }}" type="button" class="btn btn-info btn-sm">Editar</button>
+                <button (click)="deleteUser(item.id!)" type="button" class="btn btn-secondary btn-sm ms-2">Apagar</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
