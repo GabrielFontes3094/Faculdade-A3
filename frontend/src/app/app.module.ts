@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 import { LoginComponent } from './components/login/login-criar-user/login.component';
 import { LoginEntrarComponent } from './components/login/login-entrar/login-entrar.component';
+import { TelaUsuarioComponent } from './components/tela-usuario/tela-usuario.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginEntrarComponent } from './components/login/login-entrar/login-entr
     AddEditProductComponent,
     ProgressBarComponent,
     LoginComponent,
-    LoginEntrarComponent
+    LoginEntrarComponent,
+    TelaUsuarioComponent
   ],
   imports: [
     BrowserModule,

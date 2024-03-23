@@ -20,7 +20,8 @@ export class UserService {
     return this.http.post<any>(this.myAppUrl + this.myApiUrl, user);
   }
 
-  authenticateUser(credentials: { userName: string, password: string }): Observable<any> {
-    return this.http.post<any>(this.myAppUrl + this.myApiUrl + 'authenticate', credentials);
-  }
+  authenticateUser(credentials: { userName: string, password: string }): Observable<User> {
+    return this.http.post<User>(this.myAppUrl + this.myApiUrl + 'authenticate', credentials);
+  } 
+
 }

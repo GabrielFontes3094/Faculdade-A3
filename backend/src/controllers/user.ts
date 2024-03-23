@@ -82,7 +82,7 @@ export const authenticateUser = async (req: Request, res: Response) => {
     try {
         const user = await User.findOne({ where: { userName, password } });
         if (user) {
-            res.json({ msg: 'Usuário autenticado com sucesso!' });
+            res.json(user.toJSON()); // Certifique-se de que toJSON() retorna um objeto que segue a estrutura da interface User.
         } else {
             res.status(401).json({ msg: 'Credenciais inválidas. Verifique o nome de usuário e senha.' });
         }
@@ -91,3 +91,4 @@ export const authenticateUser = async (req: Request, res: Response) => {
         res.status(500).json({ msg: 'Erro ao autenticar usuário' });
     }
 }
+
