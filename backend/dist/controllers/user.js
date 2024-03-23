@@ -103,7 +103,7 @@ const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const user = yield user_1.default.findOne({ where: { userName, password } });
         if (user) {
-            res.json({ msg: 'Usuário autenticado com sucesso!' });
+            res.json(user.toJSON()); // Certifique-se de que toJSON() retorna um objeto que segue a estrutura da interface User.
         }
         else {
             res.status(401).json({ msg: 'Credenciais inválidas. Verifique o nome de usuário e senha.' });

@@ -33,14 +33,28 @@ export class LoginEntrarComponent implements OnInit{
     if (this.form.valid) {
       this.loading = true;
       this._userService.authenticateUser(this.form.value).subscribe(
-        response => {
-          console.log(response); // usuario encontrado
-          this.router.navigate(['/home']);
+        (response: User) => {
+          console.log(response);
+          // Aqui, verificamos o nível de acesso retornado pelo servidor e redirecionamos o usuário para a página apropriada.
+          switch (response.access) {
+            case 'admin':
+              this.router.navigate(['/admin']);
+              break;
+              case 'usuario':
+              this.router.navigate(['/usuario']);
+              break;
+            case 'vendedor':
+              this.router.navigate(['/vendedor']);
+              break;
+            // Adicione mais casos conforme necessário para outros níveis de acesso.
+            default:
+              this.router.navigate(['/default']);
+          }
           this.toastr.success('Usuário encontrado', 'Sucesso!');
           this.loading = false;
         },
         error => {
-          console.error(error); // usuario não encontrado
+          console.error(error);
           this.toastr.warning('Usuário não existe', 'Erro!');
           this.loading = false;
         }
@@ -48,4 +62,5 @@ export class LoginEntrarComponent implements OnInit{
     }
   }
 }
+
 
